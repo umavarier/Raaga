@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('../../partials/head') %>
+
+  <body style="background-color: #f5caca;">
+    <%-include ('../../partials/admin/dash-navbar')%>
+    <br>
+    <h5 class="text-center text" style="color: rgb(162, 8, 8);">PRODUCT MANAGEMENT</h5>
+  <br>
+  <div class="d-flex justify-content-center">
+      <a href="/admin/products/addproducts"><button class=" btn btn-lg w-20 boder-2 m-3" style="background-color: #560705; color:#fff;">ADD
+          PRODUCT</button></a></div>
+
+          <section class="container">
+            <div class="row">
+              <div class="col-12 table-responsive">
+                <table class="table table-striped" id="datatable">
+                  <thead>
+                    <tr>
+                      <th class="fs-6">NO</th>
+                      <th class="fs-6">Name</th>
+                      <th class="fs-6">Price</th>
+                      <th class="fs-6">Category</th>
+                      <th class="fs-6">Colour</th>
+                      <th class="fs-6">Size</th>
+                      <th class="fs-6">Stock</th>                      
+                      <th class="fs-6">Images</th>
+                      <th class="fs-6">Update</th>
+                      <th class="fs-6">Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% if(products.length > 0) { %>
+                      <% var count = 1; %>
+                      <% products.forEach(item => { %>
+                        <tr>
+                          <td><%= count++ %></td>
+                          <td><%= item.productname %></td>
+                          <td><%= item.price %></td>
+                          <td><%= item.categoryId?.categoryname %></td>
+                          <td><%= item.color %></td>
+                          <td><%= item.size %></td>
+                          <td><%= item.totalStoke %></td>
+                          <!-- <td><%= item.description %></td> -->
+                          <td><img class="image" style="width: 20%; height: 20%;" src="/<%= item.images[0] %>" alt=""></td>
+                          <td><a href="/admin/products/editproducts/<%=item._id %>"><button class="btn btn-warning border-2 w-100 fw-bold">EDIT</button></a></td>
+                          <td><button class="btn btn-danger border-2 fw-bold" data-bs-toggle="modal" data-bs-target="#staticBackdrop<%=count %>">Delete</button></td>
+                        </tr>
+                        <div class="modal fade" id="staticBackdrop<%=count%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                The product will be removed !!!
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-danger" id="delete<%= count %>" onclick="deleteProduct(this.id)" data-url="<%= item._id %>">DELETE</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <% }) %>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>      
+        <br>    
+    
+  <%-include('../../partials/adminFooter') %>
+
+  <script src="/script/scriptadmin.js"></script>
+  </body>
+</html>

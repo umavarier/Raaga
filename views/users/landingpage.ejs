@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('../partials/head')%>
+
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow" style="background-color: #4f2e2e;">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="/home">
+                <h2 class="beau" style=" font-family: 'Beau Rivage', cursive; color : azure">Raaga</h2>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+                id="templatemo_main_nav">
+                <div class="flex-fill">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: azure;" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: azure;" href="/login">LogIn</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: azure;" href="/register">SignUp</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar align-self-center d-flex">
+                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
+                            <div class="input-group-text">
+                                <i class="fa fa-fw fa-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal"
+                        data-bs-target="#templatemo_search">
+                        <i class="fa fa-fw fa-search text-light mr-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Close Header -->
+
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="container" data-aos="fade-up">
+            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+                <div class="col-xl-6 col-lg-8">
+                    <h1 class="beau" style=" font-family: 'Beau Rivage', cursive;  color : hwb(22 32% 10%);">Where
+                        words fail, music speaks</h1>                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Start Featured Product -->
+    <section class="" style="background-color: #5d4848;">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="beau" style=" font-family: 'Beau Rivage', cursive; color : azure;">Raaga-find your music.
+                        <h3 style="color: rgb(165, 168, 26);">"Music gives a soul to the universe, wings to the mind,
+                            flight to the imagination, and life to everything.” </h3>
+                </div>
+            </div>
+            <div class="row">
+                <% if(products.length>0){ %>
+                    <% products.forEach(item=>{ %>
+                        <div class="col-12 col-md-4 mb-4">
+                            <div class="card h-100 bg-secondary">
+                                <a href="./details/?id=<%=item._id %>">
+                                    <img src="/<%= item.images[0] %>" class="card-img-top" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <ul class="list-unstyled d-flex justify-content-between">
+                                        <li>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-warning fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                            <i class="text-muted fa fa-star"></i>
+                                        </li>
+                                  
+                                    </ul>
+                                    <a href="./details/?id=<%=item._id %>" class="h4 text-decoration-none text-light"><%= item.productname %></a>
+                                    <p class="card-text">
+                                        <%= item.description %>
+                                    </p>
+                                    <% if (item.offer>0){ %>
+                                        <p class="dress-card-para mt-1"><span class="dress-card-price fs-5"> ₹ <%= Math.round(item.price -( item.price *(item.offer/100))) %> /-&ensp;</span><span
+                                          class="dress-card-crossed mt-1"></span><span class="dress-card-off text-primary">&ensp;(<%= item.offer %>% OFF)</span></p>
+                                     <% } else{ %>
+                                        <p class="dress-card-para mt-1"><span class="dress-card-price fs-5"> ₹ <%=item.price %>&ensp;</span><span
+                                          class="dress-card-crossed mt-1 "></span></p>
+                                      <% }%>
+            
+                                     
+                                      <% item.review.forEach(review=>{  %>
+                                         <p class="text-muted"><%= review.review%></p>
+                                      <% })%>                                    
+                                </div>
+                            </div>            
+                        </div>
+                        <%   }) %>
+              <%  }  %>
+                    </div>                 
+        </div>
+    </section>
+    <%- include ('../partials/bottom-navbar') %>
+ </body>
+ </html>

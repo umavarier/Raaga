@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('../partials/head') %>
+
+  <body style="background-color: #f5caca;">
+    <%-include ('../partials/admin/dash-navbar') %>
+      <br>
+      <h5 class="text-center text" style="color: rgb(162, 8, 8);">CATEGORY MANAGEMENT</h5>
+      <br>
+      <section class="container">
+        <div class="row">
+          <div class="col-12 table-responsive">
+            <div>
+              <form action="/admin/categories/add" method="POST">
+                <h6 class="form-label">ADD NEW CATEGORIES</h6>
+                <span class=" text-danger fw-bold">
+                  <%= message %>
+                    </span>
+                    <div class="row">
+                    <div class="col">
+                      <input class="form-control form-control-sm-4" style="width: 40%;" type="text" name="category" id="category"
+                        placeholder="New Category"></input>
+                    </div>
+                    <div class="pt-2" style="padding-top: 1%;">
+                      <button class="btn  btn-lg mt-1 mb-3 " type="submit" style="background-color: #5c0509; border-color: #0b0000; color: #fff;"> ADD CATEGORY</button>
+                    </div>
+                    </div>
+              </form>
+            </div>
+            <table class="table" id="datatable">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Category Name</th>
+                  <th scope="col">Update</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if(category.length>0){ %>
+                  <% var count=1 %>
+                    <% category.forEach(items=> { %>
+                      <tr>
+                        <th scope="row">
+                          <%= count++ %>
+                        </th>
+                        <td class="fw-bold">
+                          <%= items.categoryname %>
+                        </td>
+                        <td>
+                          <div>
+                            <button class="btn btn-danger fw-bold" data-bs-toggle="modal"
+                              data-bs-target="#staticBackdrop<%= count %>">Delete</button>
+                            <div class="modal fade" id="staticBackdrop<%= count %>" data-bs-backdrop="static"
+                              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                              aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete Category</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    It will be removed !!!
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                                    <button type="button" class="btn btn-danger" id="delete<%= count %>"
+                                      onclick="deleteCategory(this.id)" data-url="<%= items._id %>">DELETE</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <% }) %>
+                        <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <%-include('../partials/adminFooter') %>
+
+      <!-- Start Script -->
+      <script src="assets/js/jquery-1.11.0.min.js"></script>
+      <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
+      <script src="assets/js/bootstrap.bundle.min.js"></script>
+      <script src="assets/js/templatemo.js"></script>
+      <script src="assets/js/custom.js"></script>
+      <!-- End Script -->
+      <script src="/script/scriptadmin.js"></script>
+  </body>
+</html>

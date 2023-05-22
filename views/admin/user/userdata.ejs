@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('../../partials/head') %>
+
+  <body style="background-color: #f5caca;">
+    <%-include('../../partials/admin/dash-navbar') %>
+      <br>
+      <h5 class="text-center" style="color: rgb(162, 8, 8);">USER MANAGEMENT</h5>
+      <br>   
+      <section class="container pt-5">
+        <div class="row ">
+          <div class="col-12 table-responsive ">
+            <table id="datatable" class="table display table-overflow  table-borderless table-hover">
+              <thead>
+                <tr class="pl-3">
+                  <th class="" scope="col">SL.NO</th>
+                  <th class="" scope="col">Name</th>
+                  <th class="" scope="col">Email</th>
+                  <th class="" scope="col">Phone</th>
+                  <th class="" scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody class="ml-0">
+                <% if(register.length>0){ %>
+                  <% var count=1 %>
+                    <% register.forEach(item=> { %>
+                      <tr>
+                        <th class="" scope="row">
+                          <%= count++ %>
+                        </th>
+                        <td class="">
+                          <%= item.username %>
+                        </td>
+                        <td class="">
+                          <%= item.email %>
+                        </td>
+                        <td class="">
+                          <%= item.number %>
+                        </td>
+                        <td class="">
+                          <div>
+
+
+                            <% if(item.isBlocked){ %>
+                              <button class="btn border-0 btn-outline-success" id="button<%= count %> "
+                                onclick="blockUser(this.id)" data-url="<%= item._id %>">Unblock</button>
+                              <% }else{ %>
+                                <button class="btn border-0 btn-outline-danger fw-bold" id="button<%= count %>"
+                                  onclick="blockUser(this.id)" data-url="<%= item._id %>">Block</button>
+                                <% } %>
+                          </div>
+                        </td>
+                      </tr>
+                      <% }) %>
+                        <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <%-include('../../partials/adminFooter') %>
+
+        <script src="/script/scriptadmin.js"></script>
+  </body>
+
+</html>

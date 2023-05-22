@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<script defer src="script/script.js"></script>
+<%-include('../partials/head') %>
+    <body class="" style="background-image: url(/assets/imgs/register3.jpg); background-size: cover;">
+        <%-include('../partials/top-navbar') %>
+
+            <style>
+                .input-control.success input {
+                    border-color: #09c372;
+                }
+                .input-control.error input {
+                    border-color: #ff3860;
+                }
+                .input-control small {
+                    visibility: hidden;
+                    left: 0;
+                }
+                .input-control.error small {
+                    color: #ff3860;
+                    visibility: visible;
+                }
+            </style>
+            <div class="container-fluid mx-auto">
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-sm-4 text-black">
+                        <h1 class="reg  text-center mb-1" style="color: azure;">Sign up</h1>
+                        <span >
+                            <%= message %>
+                        </span>
+                        <form class="formregister" id="formregister" action="/register" method="POST">
+
+                            <div class="input-control mb-1 ">
+                                <label class="form-label" for="username" style="color: azure;">Username</label>
+                                <input type="text" id="username" name="username" class="form-control form-control-xl" />
+                                <small style="color: #4206f5;">Error message</small>
+                            </div>
+                            <div class="input-control mb-1  ">
+                                <label class="form-label" for="email" style="color: azure;">Your Email</label>
+                                <input type="text" id="email" name="email" class="form-control form-control-xl" />
+                                <small style="color: #4206f5;">Error message</small>
+                            </div>
+                            <div class="input-control mb-1  ">
+                                <label class="form-label" for="number" style="color: azure;">Phone Number</label>
+                                <input type="text" id="number" name="number" class="form-control form-control-xl" />
+                                <small style="color: #4206f5;">Error message</small>
+                            </div>
+
+                            <div class="input-control mb-1">
+                                <label class="form-label" for="password" style="color: azure;">Password</label>
+                                <input type="password" id="password" name="password"
+                                    class="form-control form-control-xl" />
+                                <small style="color: #4206f5;">Error message</small>
+                            </div>
+                            <div class="input-control mb-1">
+                                <label class="form-label" for="password" style="color: azure;">Confirm Password</label>
+                                <input type="password" id="password2" name="password2"
+                                    class="form-control form-control-xl" />
+                                <small style="color: #4206f5;">Error message</small>
+                            </div>
+
+                            <div class="d-flex justify-content-center">
+                                <button type="submit " id="submit"
+                                    class="btn btn-block btn-lg  register-button text-body rounded-pill fw-bold" style="background-color:#fff">Register</button>
+                            </div>
+
+                            <p class="text-center text-muted  mb-0">Have already an account? <a href="/login"
+                                    class="fw-bold text" style="color: #fff;"><u class="fs-4">Login</u></a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+     </body>
+</html>

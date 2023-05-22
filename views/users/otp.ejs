@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include ('../partials/head') %>
+<body class="">
+    <%-include('../partials/top-navbar')%>
+
+    <div class="container-fluid mx-auto">
+        <div class="row mt-5 justify-content-center">
+          <div class="col-sm-6 text-black">
+            <form class="OTP" id="OTP" action="/otp" method="POST">
+
+                <div class="input-control mb-4 ">
+                    <label class="form-label fw-bold" for="OTP">Enter OTP</label>
+                    <input type="text" id="otp" name="otp"
+                        class="form-control form-control-lg" />
+                    
+                    <span class="" id="time"> </span><br>
+                    <button class="btn btn-secondary  mt-3" id="timer" style="display:none"><a class="text-decoration-none text-dark" href="/register/resend">Resend Otp</a></button>               
+                </div>               
+                <div class="mb-4 d-flex justify-content-center  btn-lg">
+                    <button class=" btn login-btn m-auto px-5 py-1 rounded-pill fs-3 fw-bold"  type="submit" name="submit" id="submit">Submit</button>
+                  </div>
+                </form>
+          </div>
+        </div>
+      </div>         
+
+    <%- include ('../partials/bottom-navbar') %>
+    <script src="script/script.js"></script>
+    <script>var timeLeft = 30;
+        var elem = document.getElementById('time');
+        var timerId = setInterval(countdown, 1000);
+        
+        function countdown() {
+            var button = document.getElementById("timer");
+            if (timeLeft == -1) {
+              button.style.display = "inline-block";
+                
+            } else {
+                elem.innerHTML = 'Resent otp in ' + timeLeft + ' seconds';
+                timeLeft--;
+            }
+        }
+         </script>       
+    </body>
+    </html>

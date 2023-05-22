@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include ('../partials/head') %>
+    <%-include('../partials/top-navbar')%>
+
+    <body style="background-image: url(/assets/imgs/login2.jpg); background-size: cover;" >
+      <div class="container-fluid mx-auto" >
+        <div class="row mt-5 justify-content-center">
+          <!-- <div class="col-sm-6 text-black" style="border: 1px solid rgb(243, 227, 227);"> -->
+            <div class="col-sm-6 text-black">
+              <span class="text-danger fw-bold fs-5"><%= message %></span>
+            <form action="/login" method="POST" style="width: 23rem;">
+              <h3 class=" login fw-bold mt-5 mb-3 pb-3  text-center  " style="letter-spacing: 1px;">LogIn</h3>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password " name="password">
+              </div>             
+              <div class="mb-4 d-flex justify-content-center  btn-lg">
+                <button class=" btn btn-warning login-btn m-auto px-5 py-1 rounded-pill fs-3" type="submit" name="submit"
+                  id="submit">Login</button>
+              </div>
+              <p>Not a User? <a href="/register" class="linkinfo text-decoration-none fs-4" style="color : red"> Sign up</a></p>
+            </form>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    </body>
+</html>

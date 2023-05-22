@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include ('../partials/head') %>
+<body>
+  <%-include ('../partials/user/user-navbar') %>
+ 
+
+
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-6 col-lg-8">
+          <h1>Find your Inner Music            
+          <h2>It's like a dream</h2>
+        </div>
+      </div>
+
+     
+    </div>
+  </section>
+
+
+      <!-- Start Categories of The Month -->
+      <section class="" style="background-color: rgb(25, 26, 36);">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+               <h1 class="h1" style="color: rgb(249, 230, 25); font-family:'Times New Roman', Times, serif"><b>Trending Categories</b></h1>
+                <p  style="color: aliceblue;">
+                    “Fashion is not necessarily about labels. It’s not about brands. It’s about something else that comes from within you.” 
+                  </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4  p-5 mt-3">
+                <a href="/users/loadShop?category=0"><img src="./assets/imgs/guitar2.jpg" class=" img-fluid border"></a>
+                
+                    <a class="btn btn-outline-light btn-success py-2 px-4 mt-3 animate__animated animate__fadeInUp "
+                                            href="/users/loadShop?category=0">GUITARS</a>
+                
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/users/loadShop?category=1"><img src="./assets/imgs/guitar2.jpg" class=" img-fluid border"></a>
+                
+                
+                <a class="btn btn-outline-light btn-success py-2 px-4 mt-3 animate__animated animate__fadeInUp "
+                                            href="/users/loadShop?category=1">veena</a>
+             
+            </div>
+            <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/users/loadShop?category=2"><img src="./assets/imgs/guitar2.jpg" class=" img-fluid border"></a>
+                
+                
+                <a class="btn btn-container-fluid btn-outline-light btn-success py-2 px-4 mt-3 animate__animated animate__fadeInUp "
+                                            href="/users/loadShop?category=2">violin</a>
+                
+            </div>
+        </div>
+    </section>
+    <!-- End Categories of The Month -->
+
+ <!-- Start Featured Product -->
+  
+<section class="" style="background-color: #ccbdbd;">
+    <div class="container py-5">
+        <div class="row text-center py-3">
+            <div class="col-lg-6 m-auto">
+               
+                
+              <h1 style="color: rgb(244, 244, 246);">Raaga, where <span style="color: rgb(1, 1, 203);">You can</span> Find your music</h1>
+              <br> <br><h5 class="h5" style="color: rgb(227, 210, 56); font-size: 170%;">FEATURED PRODUCTS</h5>
+          </div>
+        </div>      
+
+        <div id="product" class="row">
+          <% if(products.length >0){ %>
+           <% products.forEach(item=>{  %>
+  
+            <div class="col-12 col-md-4 mb-4">
+                <div class="card h-100 bg-secondary">
+                    <a href="./details/?id=<%=item._id %>">
+                        <img src="/<%= item.images[0] %>" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <ul class="list-unstyled d-flex justify-content-between">
+                            <li>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-warning fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                                <i class="text-muted fa fa-star"></i>
+                            </li>                      
+                        </ul>
+                        <a href="./details/?id=<%=item._id %>" class="h4 text-decoration-none text-light"><%= item.productname %></a>
+                        <p class="card-text">
+                            <%= item.description %>
+                        </p>
+                        <% if (item.offer>0){ %>
+                            <p class="dress-card-para mt-1"><span class="dress-card-price fs-5"> ₹ <%= Math.round(item.price -( item.price *(item.offer/100))) %> /-&ensp;</span><span
+                              class="dress-card-crossed mt-1"></span><span class="dress-card-off text-primary">&ensp;(<%= item.offer %>% OFF)</span></p>
+                         <% } else{ %>
+                            <p class="dress-card-para mt-1"><span class="dress-card-price fs-5"> ₹ <%=item.price %>&ensp;</span><span
+                              class="dress-card-crossed mt-1 "></span></p>
+                          <% }%>                         
+                          <% item.review.forEach(review=>{  %>
+                             <p class="text-muted"><%= review.review%></p>
+                          <% })%>                        
+                     </div>
+                </div>
+            </div>
+            <%   }) %>
+  <%  }  %>
+        </div>     
+    </div>   
+</section>
+  <!-- End Featured Product -->        
+    <%- include ('../partials/bottom-navbar') %>    
+</body>
+</html>
